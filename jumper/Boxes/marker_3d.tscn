@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://p8vko6gyg8kc"]
+
+[ext_resource type="Script" path="res://marker_3d.gd" id="1_6d1o7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y17p6"]
+size = Vector3(26.9838, 4.71973, 16.6923)
+
+[node name="Marker3D" type="Marker3D"]
+script = ExtResource("1_6d1o7")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9919, 1.85986, -1.87042)
+shape = SubResource("BoxShape3D_y17p6")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

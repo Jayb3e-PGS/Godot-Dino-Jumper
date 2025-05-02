@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://06s7sy604xeo"]
+
+[ext_resource type="Script" path="res://Boxes/area_3d.gd" id="1_2avi3"]
+[ext_resource type="PackedScene" uid="uid://hpfelw0184b8" path="res://Scene/cactus_1.tscn" id="2_1dsk2"]
+[ext_resource type="PackedScene" uid="uid://v3fyob3htxjp" path="res://Scene/cactus_2.tscn" id="3_7bou1"]
+[ext_resource type="PackedScene" uid="uid://co4285ivcub0f" path="res://Scene/cactus_3.tscn" id="4_52y8p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pljh3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rr2cf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7hx4c"]
+size = Vector3(0.643616, 1, 0.559082)
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_2avi3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_pljh3")
+mesh = SubResource("BoxMesh_rr2cf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00643921, 0, 0.0124512)
+shape = SubResource("BoxShape3D_7hx4c")
+
+[node name="Cactus1" parent="." instance=ExtResource("2_1dsk2")]
+
+[node name="Cactus2" parent="." instance=ExtResource("3_7bou1")]
+
+[node name="Cactus3" parent="." instance=ExtResource("4_52y8p")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
